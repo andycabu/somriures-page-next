@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logo2 from "../public/assets/images/logo2.svg";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 const NAVBAR = [
   {
     id: 1,
@@ -36,27 +38,27 @@ const NAVBAR = [
 
 function Navbar() {
   return (
-    <nav className="fixed flex justify-between items-center z-50 top-0 bg-slate-500 p-4 min-w-[100vw] max-w-[1500px] transition duration-500">
-      <div className="logo">
+    <nav className="fixed flex justify-between items-center z-50 top-0 bg-white text-txt-1 p-4 min-w-[100vw] max-w-[1500px] transition duration-500 shadow-md">
+      <div className="flex items-center">
         <Link href="/">
           <Image
-            src="@/src/assets/images/logo2.svg"
-            width={64}
-            height={64}
+            src={logo2}
+            width={200}
+            height={100}
             alt="Logo-Clinica-dental"
           />
         </Link>
       </div>
-      <div className="navegation">
-        <ul className="menu">
-          <div className="logo-mobile">
-            <a href="./index.html">
-              <img src="./assets/images/logo2.svg" alt="Logo empresa" />
-            </a>
+      <div className="relative leading-11   transition-line duration-500 flex justify-end items-center text-right w-4/5 pr-4 gap-4">
+        <ul className="relative flex gap-20 transition-right ">
+          <div className="justify-center hidden max-[830px]:flex ">
+            <Link href="/">
+              <Image className="w-60" src={logo2} alt="Logo empresa" />
+            </Link>
           </div>
-          <i className="fas fa-times fa-lg close-btn"></i>
+          <FontAwesomeIcon className="hidden max-[1154px]:block cursor-pointer h-8 absolute top-4 right-4 hover:text-secondary" icon={faXmark} />
           {NAVBAR.map((item) => (
-            <li key={item.id} className="item">
+            <li key={item.id} className="hover:text-primary transition duration-300">
               <Link href={item.url}>{item.title}</Link>
             </li>
           ))}
