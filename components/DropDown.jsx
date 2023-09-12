@@ -28,3 +28,5 @@ function DropDown() {
     </ul>
   );
 }
+
+export default DropDown
