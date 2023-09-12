@@ -34,3 +34,8 @@ body{
     min-height: 100vh;
     font-size: 100%;
 }
+
+.sub-btn-a:hover + svg{
+transform: rotate(180deg);
+color: #00b2f3;
+}

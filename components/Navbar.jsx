@@ -2,37 +2,42 @@ import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo2 from "../public/assets/images/logo2.svg";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 const NAVBAR = [
   {
     id: 1,
     title: "Inicio",
     url: "/",
     icon: "",
+    class:"hover:text-primary transition duration-300",
   },
   {
     id: 2,
     title: "Somriures",
     url: "/Somriures",
     icon: "",
+    class: "hover:text-primary transition duration-300",
   },
   {
     id: 3,
     title: "Especialidades",
     url: "/Especialidades",
-    icon: "",
+    icon:<FontAwesomeIcon icon={faAngleDown} className="cursor-pointer max-[1154px]:text-2xl max-[1154px]:pl-3 transition-transform duration-500 h-4 inline-block pl-3 "/>,
+    class:"hover:text-primary transition duration-300 sub-btn-a",
   },
   {
     id: 4,
     title: "Contacto",
     url: "/Contacto",
     icon: "",
+    class: "hover:text-primary transition duration-300",
   },
   {
     id: 5,
     title: "Blog",
     url: "/Blog",
     icon: "",
+    class: "hover:text-primary transition duration-300",
   },
 ];
 
@@ -58,8 +63,9 @@ function Navbar() {
           </div>
           <FontAwesomeIcon className="hidden max-[1154px]:block cursor-pointer h-8 absolute top-4 right-4 hover:text-secondary" icon={faXmark} />
           {NAVBAR.map((item) => (
-            <li key={item.id} className="hover:text-primary transition duration-300">
-              <Link href={item.url}>{item.title}</Link>
+            <li key={item.id} >
+              <Link className={item.class} href={item.url}>{item.title}</Link>
+              {item.icon}
             </li>
           ))}
           <div className="nav__icons">
