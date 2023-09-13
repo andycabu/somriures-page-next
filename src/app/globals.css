@@ -1,47 +1,69 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-  }
-  ::-webkit-scrollbar {
-    width: 0.75rem;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #565656;
-    border-radius: 0.3125rem;
-    height: 15%;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #00b2f3;
-  }
-  ::-webkit-scrollbar-track {
-    display: none;
-  }
-body{
-    font-style: normal;
-    line-height: 1.74;
-    text-decoration: none;
-    text-transform: none;
-    text-rendering: optimizeLegibility;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100vh;
-    font-size: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+::-webkit-scrollbar {
+  width: 0.75rem;
+}
+::-webkit-scrollbar-thumb {
+  background: #565656;
+  border-radius: 0.3125rem;
+  height: 15%;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00b2f3;
+}
+::-webkit-scrollbar-track {
+  display: none;
+}
+body {
+  font-style: normal;
+  line-height: 1.74;
+  text-decoration: none;
+  text-transform: none;
+  text-rendering: optimizeLegibility;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  font-size: 100%;
 }
 
-.sub-btn:hover + svg{
-transform: rotate(180deg);
-color: #00b2f3;
+.navegation {
+  @apply relative leading-11   transition-line duration-500 flex justify-end items-center text-right w-4/5 pr-4 gap-4 max-[1154px]:right-full max-[1154px]:py-[5.625rem] max-[1154px]:px-[3.125rem] max-[1154px]:top-0 max-[1154px]:fixed max-[1154px]:block max-[1154px]:invisible max-[1154px]:bg-white max-[1154px]:overflow-y-auto max-[1154px]:h-screen max-[1154px]:justify-around max-[1154px]:select-none max-[1154px]:min-w-[40vw] max-[1154px]:text-center;
+}
+
+.dropdown {
+  @apply sub-menu absolute flex-col justify-center p-0 bg-primary top-16 shadow-personalized translate-y-5 hidden w-64 max-[1154px]:relative max-[1154px]:left-[-0.625rem] max-[1154px]:top-0 max-[1154px]:translate-x-[0.625rem] max-[1154px]:bg-bg-2 max-[1154px]:overflow-hidden max-[320px]:left-4;
+}
+
+.dropdown li {
+  @apply shadow-insent h-12 w-[inherit] text-white max-[1154px]:text-txt-1 max-[1154px]:shadow-insent-lg;
+}
+.dropdown li a {
+  @apply flex justify-center items-center w-full h-full hover:bg-bg-3 transition duration-300;
+}
+
+.sub-menu:hover + svg {
+  transform: rotate(180deg);
+  color: #00b2f3;
 }
 
 .sub-btn:hover .sub-menu {
   transform: translateY(0);
-  display: block;
+  display: flex;
+}
+
+@media (max-width: 1154px) {
+  .sub-btn:hover .sub-menu {
+    transform: translateX(0.625rem);
+    display: none;
+  }
 }

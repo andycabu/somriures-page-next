@@ -2,7 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo2 from "../public/assets/images/logo2.svg";
-import { faXmark, faAngleDown , faClock } from "@fortawesome/free-solid-svg-icons";
+import {
+  faXmark,
+  faAngleDown,
+  faClock,
+  faBars,
+} from "@fortawesome/free-solid-svg-icons";
 import DropDown from "./DropDown";
 
 const NAVBAR = [
@@ -10,13 +15,11 @@ const NAVBAR = [
     id: 1,
     title: "Inicio",
     url: "/",
-   
   },
   {
     id: 2,
     title: "Somriures",
     url: "/Somriures",
-  
   },
   {
     id: 3,
@@ -48,27 +51,26 @@ function Navbar() {
     <nav className="fixed flex justify-between items-center z-50 top-0 bg-white text-txt-1 p-4 min-w-[100vw] max-w-[1500px] transition duration-500 shadow-md">
       <div className="flex items-center">
         <Link href="/">
-          <Image
-            src={logo2}
-            className="w-64"
-            alt="Logo-Clinica-dental"
-          />
+          <Image src={logo2} className="w-64" alt="Logo-Clinica-dental" />
         </Link>
       </div>
-      <div className="relative leading-11   transition-line duration-500 flex justify-end items-center text-right w-4/5 pr-4 gap-4">
-        <ul className="relative flex gap-20 transition-right ">
+      <div className="navegation ">
+        <ul className="relative flex gap-20 transition-right max-[830px]:min-w-[100vw] ">
           <div className="justify-center hidden max-[830px]:flex ">
             <Link href="/">
               <Image className="w-60" src={logo2} alt="Logo empresa" />
             </Link>
           </div>
           <FontAwesomeIcon
-            className="hidden max-[1154px]:block cursor-pointer h-8 absolute top-4 right-4 hover:text-secondary"
+            className="hidden max-[1154px]:block cursor-pointer h-6 absolute top-4 right-4 hover:text-secondary"
             icon={faXmark}
           />
           {NAVBAR.map((item) => (
-            <li key={item.id}>
-              <Link className={`hover:text-primary transition duration-300 ${item.class}` } href={item.url}>
+            <li className={item.class} key={item.id}>
+              <Link
+                className={`hover:text-primary transition duration-300 max-[1154px]:relative max-[1154px]:text-center  ${item.class}`}
+                href={item.url}
+              >
                 {item.title}
               </Link>
               {item.icon}
@@ -91,11 +93,17 @@ function Navbar() {
           </div>
         </ul>
         <div className="flex items-center max-[1201px]:hidden">
-          <FontAwesomeIcon className="text-primary h-5 pr-[0.2rem]" icon={faClock}/>
+          <FontAwesomeIcon
+            className="text-primary h-5 pr-[0.2rem]"
+            icon={faClock}
+          />
           <p>10 a 14 y 16 a 20</p>
         </div>
       </div>
-      <i className="fas fa-bars fa-lg menu-btn"></i>
+      <FontAwesomeIcon
+        className="hidden max-[1154px]:block cursor-pointer h-6 absolute top-4 right-4 hover:text-secondary"
+        icon={faBars}
+      />
     </nav>
   );
 }
