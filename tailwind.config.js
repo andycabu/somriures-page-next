@@ -22,6 +22,10 @@ module.exports = {
       transitionProperty: {
         'line': 'line-height',
         'right': 'right , visibility',
+      },
+      boxShadow: {
+        'personalized': '0.067em 0.067em 4.133em rgba(12, 71, 84, 0.08)',
+        'insent': 'inset 0 -30px 5px -30px rgba(255, 255, 255, 0.55)',
       }
     },
   },

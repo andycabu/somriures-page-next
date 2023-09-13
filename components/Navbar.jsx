@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo2 from "../public/assets/images/logo2.svg";
-import { faXmark, faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faAngleDown , faClock } from "@fortawesome/free-solid-svg-icons";
 import DropDown from "./DropDown";
 
 const NAVBAR = [
@@ -10,18 +10,18 @@ const NAVBAR = [
     id: 1,
     title: "Inicio",
     url: "/",
-    class: "hover:text-primary transition duration-300",
+   
   },
   {
     id: 2,
     title: "Somriures",
     url: "/Somriures",
-    class: "hover:text-primary transition duration-300",
+  
   },
   {
     id: 3,
     title: "Especialidades",
-    url: "/Especialidades",
+    url: "/especialidades",
     icon: (
       <FontAwesomeIcon
         icon={faAngleDown}
@@ -29,19 +29,17 @@ const NAVBAR = [
       />
     ),
     DropDown: <DropDown />,
-    class: "hover:text-primary transition duration-300 sub-btn-a",
+    class: "sub-btn",
   },
   {
     id: 4,
     title: "Contacto",
     url: "/Contacto",
-    class: "hover:text-primary transition duration-300",
   },
   {
     id: 5,
     title: "Blog",
     url: "/Blog",
-    class: "hover:text-primary transition duration-300",
   },
 ];
 
@@ -52,8 +50,7 @@ function Navbar() {
         <Link href="/">
           <Image
             src={logo2}
-            width={200}
-            height={100}
+            className="w-64"
             alt="Logo-Clinica-dental"
           />
         </Link>
@@ -71,7 +68,7 @@ function Navbar() {
           />
           {NAVBAR.map((item) => (
             <li key={item.id}>
-              <Link className={item.class} href={item.url}>
+              <Link className={`hover:text-primary transition duration-300 ${item.class}` } href={item.url}>
                 {item.title}
               </Link>
               {item.icon}
@@ -93,8 +90,8 @@ function Navbar() {
             </a>
           </div>
         </ul>
-        <div className="schedule">
-          <i className="far fa-clock"></i>
+        <div className="flex items-center max-[1201px]:hidden">
+          <FontAwesomeIcon className="text-primary h-5 pr-[0.2rem]" icon={faClock}/>
           <p>10 a 14 y 16 a 20</p>
         </div>
       </div>
