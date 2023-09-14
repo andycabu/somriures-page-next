@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo2 from "../public/assets/images/logo2.svg";
@@ -79,8 +79,28 @@ const NAVBAR = [
 
 function Navbar() {
   const [active, setActive] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        // Cambia 100 por la posición en la que quieres que se aplique la clase
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Limpia el listener cuando el componente se desmonta
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <nav className="nav-personalized">
+    <nav className={`nav-personalized ${scrolling ? "sticky" : ""}`}>
       <div className="logo">
         <Link href="/">
           <Image src={logo2} className="w-64" alt="Logo-Clinica-dental" />
