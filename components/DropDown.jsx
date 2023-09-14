@@ -45,9 +45,9 @@ const DROPDOWN = [
 
 function DropDown() {
   return (
-    <ul className="dropdown" id="customElement1">
+    <ul className="sub-menu" id="customElement1">
       {DROPDOWN.map((item) => (
-        <li key={item.id}>
+        <li className="sub-item" key={item.id}>
           <Link href={item.url}>{item.title}</Link>
         </li>
       ))}
