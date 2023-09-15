@@ -3,52 +3,52 @@ const DROPDOWN = [
   {
     id: 1,
     title: "Ortodoncia",
-    url: "/espertialidades/ortodoncia",
+    url: "/especialidades/ortodoncia",
   },
   {
     id: 2,
     title: "Cirugía",
-    url: "/espertialidades/cirugia",
+    url: "/especialidades/cirugia",
   },
   {
     id: 3,
     title: "Endodoncia",
-    url: "/espertialidades/endodoncia",
+    url: "/especialidades/endodoncia",
   },
   {
     id: 4,
     title: "Estética Dental",
-    url: "/espertialidades/estetica-dental",
+    url: "/especialidades/estetica-dental",
   },
   {
     id: 5,
     title: "implantología",
-    url: "/espertialidades/implantologia",
+    url: "/especialidades/implantologia",
   },
   {
     id: 6,
     title: "Odontopediatría",
-    url: "/espertialidades/odontopediatria",
+    url: "/especialidades/odontopediatria",
   },
   {
     id: 7,
     title: "Odontología conservadora",
-    url: "/espertialidades/odontologia-conservadora",
+    url: "/especialidades/odontologia-conservadora",
   },
   {
     id: 8,
     title: "Prótesis dental",
-    url: "/espertialidades/protesis-dntal",
+    url: "/especialidades/protesis-dntal",
     class: "sub-item",
   },
 ];
 
 function DropDown() {
   return (
-    <ul className="sub-menu absolute flex flex-col justify-center p-0 bg-primary top-16 shadow-personalized translate-y-5 hidden w-64" id="customElement1">
-      {DROPDOWN.map((item)=>(
-        <li className="shadow-insent h-12 w-[inherit] text-white" key={item.id}>
-          <Link className="flex justify-center items-center w-full h-full hover:bg-bg-3 transition duration-300 " href={item.url}>{item.title}</Link>
+    <ul className="sub-menu" id="customElement1">
+      {DROPDOWN.map((item) => (
+        <li className="sub-item" key={item.id}>
+          <Link href={item.url}>{item.title}</Link>
         </li>
       ))}
     </ul>

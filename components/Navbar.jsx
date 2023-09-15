@@ -1,22 +1,56 @@
+"use client";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo2 from "../public/assets/images/logo2.svg";
-import { faXmark, faAngleDown , faClock } from "@fortawesome/free-solid-svg-icons";
+import {
+  faXmark,
+  faAngleDown,
+  faClock,
+  faBars,
+  // faInstagramSquare,
+  // faFacebookSquare,
+  // faWhatsappSquare,
+  // faPhoneSquareAlt,
+} from "@fortawesome/free-solid-svg-icons";
+
 import DropDown from "./DropDown";
+import Icons from "./Icons";
+
+// const ICONS = [
+//   {
+//     id: 1,
+//     icon: faInstagramSquare,
+//     URL: "https://www.instagram.com",
+//   },
+//   {
+//     id: 2,
+//     icon: faFacebookSquare,
+//     URL: "https://www.facebook.com",
+//   },
+//   {
+//     id: 3,
+//     icon: faPhoneSquareAlt,
+//     URL: "tel:999999999",
+//   },
+//   {
+//     id: 4,
+//     icon: faWhatsappSquare,
+//     URL: "https://whatsapp",
+//   },
+// ];
 
 const NAVBAR = [
   {
     id: 1,
     title: "Inicio",
     url: "/",
-   
   },
   {
     id: 2,
     title: "Somriures",
     url: "/Somriures",
-  
   },
   {
     id: 3,
@@ -29,7 +63,7 @@ const NAVBAR = [
       />
     ),
     DropDown: <DropDown />,
-    class: "sub-btn",
+    class: "sub-btn-a",
   },
   {
     id: 4,
@@ -44,58 +78,72 @@ const NAVBAR = [
 ];
 
 function Navbar() {
+  const [active, setActive] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        // Cambia 100 por la posición en la que quieres que se aplique la clase
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Limpia el listener cuando el componente se desmonta
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <nav className="fixed flex justify-between items-center z-50 top-0 bg-white text-txt-1 p-4 min-w-[100vw] max-w-[1500px] transition duration-500 shadow-md">
-      <div className="flex items-center">
+    <nav className={`nav-personalized ${scrolling ? "sticky" : ""}`}>
+      <div className="logo">
         <Link href="/">
-          <Image
-            src={logo2}
-            className="w-64"
-            alt="Logo-Clinica-dental"
-          />
+          <Image src={logo2} className="w-64" alt="Logo-Clinica-dental" />
         </Link>
       </div>
-      <div className="relative leading-11   transition-line duration-500 flex justify-end items-center text-right w-4/5 pr-4 gap-4">
-        <ul className="relative flex gap-20 transition-right ">
+      <div className="navegation ">
+        <ul
+          className={`menu relative flex gap-20 transition-right max-[830px]:min-w-[100vw] ${
+            active ? "active" : ""
+          }`}
+        >
           <div className="justify-center hidden max-[830px]:flex ">
             <Link href="/">
               <Image className="w-60" src={logo2} alt="Logo empresa" />
             </Link>
           </div>
+
           <FontAwesomeIcon
-            className="hidden max-[1154px]:block cursor-pointer h-8 absolute top-4 right-4 hover:text-secondary"
+            onClick={() => setActive(false)}
+            className="close-btn"
             icon={faXmark}
           />
           {NAVBAR.map((item) => (
-            <li key={item.id}>
-              <Link className={`hover:text-primary transition duration-300 ${item.class}` } href={item.url}>
+            <li className="menu-item" key={item.id}>
+              <Link className={item.class} href={item.url}>
                 {item.title}
               </Link>
               {item.icon}
               {item.DropDown}
             </li>
           ))}
-          <div className="nav__icons">
-            <a target="_blank" href="https://www.instagram.com">
-              <i id="zoom" className="fab fa-instagram-square transition"></i>
-            </a>
-            <a target="_blank" href="https://www.facebook.com">
-              <i id="zoom" className="fab fa-facebook-square transition"></i>
-            </a>
-            <a target="_blank" href="https://whatsapp">
-              <i id="zoom" className="fab fa-whatsapp-square transition"></i>
-            </a>
-            <a target="_blank" href="tel:999999999">
-              <i id="zoom" className="fas fa-phone-square-alt transition"></i>
-            </a>
-          </div>
+          {/* <Icons icons={ICONS} /> */}
         </ul>
-        <div className="flex items-center max-[1201px]:hidden">
-          <FontAwesomeIcon className="text-primary h-5 pr-[0.2rem]" icon={faClock}/>
+        <div className="schedule">
+          <FontAwesomeIcon icon={faClock} />
           <p>10 a 14 y 16 a 20</p>
         </div>
       </div>
-      <i className="fas fa-bars fa-lg menu-btn"></i>
+      <FontAwesomeIcon
+        onClick={() => setActive(!active)}
+        className="menu-btn"
+        icon={faBars}
+      />
     </nav>
   );
 }
